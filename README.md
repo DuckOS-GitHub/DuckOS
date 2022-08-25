@@ -71,7 +71,7 @@ Since there are a lot of features disabled for performance, we also care about s
 
 **What did we do?**
 
-We disable features that can leak personal information or be exploited and be used in a large attack.
+We disable features that can leak personal information or can be exploited and be used in a large attack.
 Those features are: 
 
 - [Spectre](https://spectreattack.com/spectre.pdf)
