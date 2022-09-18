@@ -115,6 +115,7 @@ echo %c_green%Done.
 :: Import gray accent color.reg
 title Do not close this window - [4/66] Importing registry
 if exist C:\Windows\DuckOS_Modules\gray_accent_color.reg ( %currentuser% regedit /s C:\Windows\DuckOS_Modules\gray_accent_color.reg )
+reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System /v VerboseStatus /t REG_DWORD /d 1
 
 :: Block every single websites telemetry with the help of a modified hosts file.
 title Do not close this window - [5/66] Blocking telemetry
