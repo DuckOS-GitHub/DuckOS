@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://github.com/DuckOS-GitHub/DuckOS/blob/main/banner.jpg?raw=true" alt="DuckOS" width="900">
+  <img src="https://github.com/DuckOS-GitHub/DuckOS/blob/main/banner.png?raw=true" alt="DuckOS" width="900">
   <br>
   DuckOS
   <br>
@@ -52,7 +52,7 @@ DuckOS is **pre-tweaked**. While maintaining compatibility, it's also good for p
     <br>
     Why should you trust us?
   <br>
-  <a href="https://discord.gg/8pDMf44t6R/"><img src="https://cdn.discordapp.com/attachments/999774689138311288/1011900995653095484/IMG_20220824_093312.jpg" alt="DuckOS" width="900"></a>
+  <a href="https://discord.gg/8pDMf44t6R/"><img src="https://github.com/DuckOS-GitHub/DuckOS/blob/main/banner2.png?raw=true" alt="DuckOS" width="900"></a>
 </h1>
 
 ## DuckOS vs Windows 10 Original (*stock*)
