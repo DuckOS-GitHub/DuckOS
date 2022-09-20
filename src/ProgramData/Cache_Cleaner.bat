@@ -7,6 +7,4 @@ del /s /f /q C:\Windows\prefetch\*.*
 echo Deleting temporary folder...
 del /s /f /q %temp%\*.*
 cd /d C:\
-echo Removing all logs and other temporary files...
-del *.log /s /q /f
 del *.tmp /s /q /f
