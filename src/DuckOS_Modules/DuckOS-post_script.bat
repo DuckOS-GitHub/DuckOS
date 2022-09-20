@@ -12,15 +12,17 @@
 :: Set up colors in echo
 :: Some colors might not be used as of now, but we'll keep it.
 chcp 65001 >nul 2>&1
+set c_black=[30m
 set c_red=[31m
 set c_green=[32m
 set c_gold=[33m
 set c_blue=[34m
 set c_purple=[35m
 set c_cyan=[36m
+set c_white=[37m
 
 :: Set a variable.. that we will use later... that points into an executable.
-set currentuser=C:\Windows\DuckOS_Modules\nsudo.exe -U:C -P:E -Wait
+set currentuser=%windir%\DuckOS_Modules\nsudo.exe -U:C -P:E -Wait
 powershell -WindowStyle Maximized Write-Host The post install script is starting...
 
 :: Make the script faster by putting a higher priority.
@@ -51,7 +53,7 @@ start mshta.exe vbscript:Execute("msgbox ""Welcome to DuckOS, a modification to 
 start mshta.exe vbscript:Execute("msgbox ""You will be prompted with a few questions, then you can leave your computer running and let us do the rest."",64+4096,""DuckOS Post Install Tweaks"":close")
 
 :: Change the directory.
-cd C:\Windows\DuckOS_Modules
+cd %windir%\DuckOS_Modules
 
 :: Ask the user if they use "Windows Firewall", if not, disable it.. if yes, do nothing...
 title Do not close this window - [1/66] Windows Firewall
@@ -94,14 +96,14 @@ if errorlevel 6 (
 	reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam" /v "Value" /t REG_SZ /d "Allow" /f
 	reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam\NonPackaged" /v "Value" /t REG_SZ /d "Allow" /f
     reg add "HKLM\SYSTEM\CurrentControlSet\Services\swenum" /v "Start" /t REG_DWORD /d "3" /f
-    if exist C:\Windows\DuckOS_Modules\devmanview.exe C:\Windows\DuckOS_Modules\devmanview.exe /disable "Plug and Play Software Device Enumerator"
+    if exist %windir%\DuckOS_Modules\devmanview.exe %windir%\DuckOS_Modules\devmanview.exe /disable "Plug and Play Software Device Enumerator"
 ) else if errorlevel 7 (
     echo %c_green%Okay... Disabling webcam services...
     reg add "HKLM\SYSTEM\CurrentControlSet\Services\swenum" /v "Start" /t REG_DWORD /d "4" /f
     reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam" /v "Value" /t REG_SZ /d "Deny" /f
 	reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam" /v "Value" /t REG_SZ /d "Deny" /f
 	reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam\NonPackaged" /v "Value" /t REG_SZ /d "Deny" /f
-    if exist C:\Windows\DuckOS_Modules\devmanview.exe C:\Windows\DuckOS_Modules\devmanview.exe /disable "Plug and Play Software Device Enumerator"
+    if exist %windir%\DuckOS_Modules\devmanview.exe %windir%\DuckOS_Modules\devmanview.exe /disable "Plug and Play Software Device Enumerator"
 )
 
 :: Set enviroment variables for future use, example: toolbox
@@ -114,7 +116,7 @@ echo %c_green%Done.
 
 :: Import gray accent color.reg
 title Do not close this window - [4/66] Importing registry
-if exist C:\Windows\DuckOS_Modules\gray_accent_color.reg ( %currentuser% regedit /s C:\Windows\DuckOS_Modules\gray_accent_color.reg )
+if exist %windir%\DuckOS_Modules\gray_accent_color.reg ( %currentuser% regedit /s %windir%\DuckOS_Modules\gray_accent_color.reg )
 
 :: Block every single websites telemetry with the help of a modified hosts file.
 title Do not close this window - [5/66] Blocking telemetry
@@ -151,9 +153,9 @@ reg add "HKLM\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeI
 :: Install 7-zip
 title Do not close this window - [8/66] Programs Installation
 :7z
-if exist C:\Windows\DuckOS_Modules\Utils\7z2201-x64.msi (
+if exist %windir%\DuckOS_Modules\Utils\7z2201-x64.msi (
     echo %c_cyan%Installing 7-zip..
-    cd C:\Windows\DuckOS_Modules\Utils
+    cd %windir%\DuckOS_Modules\Utils
     start /wait "" "7z2201-x64.msi" /passive
     echo Done.
 ) else (
@@ -176,9 +178,9 @@ if exist %SYSTEMROOT%\DuckOS_Modules\DirectX\dxsetup.exe (
 )
 
 :: Install VCRedists
-if exist C:\Windows\DuckOS_Modules\vcredist.exe (
+if exist %windir%\DuckOS_Modules\vcredist.exe (
     echo %c_cyan%Installing VCRedists..
-    cd C:\Windows\DuckOS_Modules
+    cd %windir%\DuckOS_Modules
     start /wait "" "vcredist.exe" /ai
     echo %c_green%Done.
 ) else (
@@ -206,9 +208,9 @@ echo %c_red%Done.
 :::::::::::::::::::::::::::::::::::::::::::::
 
 echo Fully disabling the telemetry...
-if exist C:\Windows\DuckOS_Modules\OOSU10.exe (
+if exist %windir%\DuckOS_Modules\OOSU10.exe (
 	echo OO ShutUp10 found... disabling telemetry..
-	C:\Windows\DuckOS_Modules\OOSU10.exe C:\Windows\DuckOS_Modules\duckOS_preset.cfg /quiet /nosrp
+	%windir%\DuckOS_Modules\OOSU10.exe %windir%\DuckOS_Modules\duckOS_preset.cfg /quiet /nosrp
 )
 echo %c_red%Done.
 
@@ -265,12 +267,13 @@ echo %c_green%Done.
 :: Set up the toolbox to be in the context menu
 title Do not close this window - [12/66] Context Menu
 echo %c_cyan%Setting up the toolbox in the context menu..
-reg add "HKEY_CLASSES_ROOT\Directory\Background\shell\DuckOS Toolbox\command" /v "" /d "C:\Windows\DuckOS_Modules\DuckOS_Toolbox\DuckOS Toolbox.exe" /t REG_SZ /f
+reg add "HKEY_CLASSES_ROOT\Directory\Background\shell\DuckOS Toolbox\command" /v "" /d "%windir%\DuckOS_Modules\DuckOS_Toolbox\DuckOS Toolbox.exe" /t REG_SZ /f
+reg add "HKEY_CLASSES_ROOT\Directory\Background\shell\DuckOS Toolbox" /v "" /d "%windir%\DuckOS_Modules\DuckOS Toolbox.exe",-1 /t REG_SZ /f
 echo %c_green%Done.
 
 :: Make the computer restart 1 time after the current restart, because THAT fixed OS issues
 title Do not close this window - [13/66] Configuring restart
-reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce" /v "*Silent System Restart" /t REG_SZ /d "C:\Windows\System32\shutdown.exe -r -t 0 -f" /f
+reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce" /v "*Silent System Restart" /t REG_SZ /d "%windir%\System32\shutdown.exe -r -t 0 -f" /f
 
 :: Import the powerplan BASED on your processor
 :: Explanation: AMD has worse speeds, more cores, IDLE isn't ideal, Intel has faster speeds, but less cores, IDLE is ideal.
@@ -293,12 +296,12 @@ set AMD=%errorlevel%
 if %INTEL% equ 0 (
     echo $ Intel processor detected, making sure power plan = idle OFF
     echo $ MIGHT CAUSE THE CPU % TO BE INACCURATE!
-    powercfg -import "C:\Windows\DuckOS_Modules\Duck.pow" d6344778-a03d-4e00-a73a-dbc3f3f5f236
+    powercfg -import "%windir%\DuckOS_Modules\Duck.pow" d6344778-a03d-4e00-a73a-dbc3f3f5f236
     powercfg /s d6344778-a03d-4e00-a73a-dbc3f3f5f236
 ) else if %AMD% equ 0 (
     echo $ AMD processor detected, making sure the power plan = idle ON
     echo $ Also making sure some AMD unneeded services aren't gonna start...
-    powercfg -import "C:\Windows\DuckOS_Modules\Duck_IDLE_ENABLED.pow" d6344778-a03d-4e00-a73a-dbc3f3f5f236
+    powercfg -import "%windir%\DuckOS_Modules\Duck_IDLE_ENABLED.pow" d6344778-a03d-4e00-a73a-dbc3f3f5f236
     powercfg /s d6344778-a03d-4e00-a73a-dbc3f3f5f236
     for %%i in ("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AMD Log Utility" "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\amdlog" "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AMD External Events Utility") do ( reg add %%i /v Start /t REG_DWORD /d 4 /f )
 )
@@ -307,7 +310,7 @@ echo %c_green%Done.
 :: MAKE THE CACHE CLEANER START ON STARTUP by modifying the shell value...
 title Do not close this window - [15/66] Cache Cleaner
 echo %c_green%Making the cache cleaner run on startup..
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /t REG_SZ /d "C:\Windows\explorer.exe, C:\ProgramData\Cache_Cleaner.bat" /F
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /t REG_SZ /d "%windir%\explorer.exe, C:\ProgramData\Cache_Cleaner.bat" /F
 echo %c_green%Done.
 
 :: Disable unneeded Tasks -- already credited
@@ -1117,12 +1120,18 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\QoS\VALORANT" /v "Remote IP Pr
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\QoS\VALORANT" /v "DSCP Value" /t REG_SZ /d "46" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\QoS\VALORANT" /v "Throttle Rate" /t REG_SZ /d "-1" /f
 
-:: BCDEdit configuration.
-bcdedit /deletevalue nx
-bcdedit /deletevalue useplatformclock > NUL 2>&1
-bcdedit /set disabledynamictick yes > NUL 2>&1
+:::::::::::::::::::::::::::
+:: BCDEdit configuration ::
+:::::::::::::::::::::::::::
+:: Delete BCD values
+echo %c_cyan%Deleting BCD values...
+for /f %%a in ( nx useplatformclock ) do (
+    bcdedit /deletevalue %%a
+)
+echo %c_green%Done.
+:: Set some BCD values
+echo %c_cyan%Setting BCD values...
 bcdedit /set useplatformtick yes > NUL 2>&1
-bcdedit /timeout 10 > NUL 2>&1
 bcdedit /set bootux disabled > NUL 2>&1
 bcdedit /set bootmenupolicy Legacy > NUL 2>&1
 bcdedit /set hypervisorlaunchtype off > NUL 2>&1
@@ -1131,16 +1140,18 @@ bcdedit /set quietboot yes > NUL 2>&1
 bcdedit /set {globalsettings} custom:16000067 true > NUL 2>&1
 bcdedit /set {globalsettings} custom:16000069 true > NUL 2>&1
 bcdedit /set {globalsettings} custom:16000068 true > NUL 2>&1
+bcdedit /timeout 10 > NUL 2>&1
 
 :: Set the DuckOS' name to DuckOS.. so it can be easily identified when dualbooting.
 bcdedit /set {current} description DuckOS
 
 :: Disable Recovery
-if exist C:\Windows\System32\reagentc.exe reagentc.exe /disable
+if exist %windir%\System32\reagentc.exe reagentc.exe /disable
 bcdedit /set {current} recoveryenabled no
+echo %c_green%Done.
 
 :: Disable Devices with DevManView
-cd /d C:\Windows\DuckOS_Modules
+cd /d %windir%\DuckOS_Modules
 devmanview /disable "Composite Bus Enumerator"
 devmanview /disable "System Speaker" MemoryDiagnostic
 devmanview /disable "System Timer"
@@ -1248,7 +1259,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabled" /t r
 :: GPO for Startmenu (tiles)
 reg add "HKLM\Software\Policies\Microsoft\Windows\Explorer" /v "LockedStartLayout" /t REG_DWORD /d "1" /f
 reg add "HKLM\Software\Policies\Microsoft\Windows\Explorer" /v "DisableNotificationCenter" /t REG_DWORD /d "1" /f
-%currentuser% reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Group Policy Objects\{2F5183E9-4A32-40DD-9639-F9FAF80C79F4}Machine\Software\Policies\Microsoft\Windows\Explorer" /v "StartLayoutFile" /t REG_EXPAND_SZ /d "C:\Windows\layout.xml" /f
+%currentuser% reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Group Policy Objects\{2F5183E9-4A32-40DD-9639-F9FAF80C79F4}Machine\Software\Policies\Microsoft\Windows\Explorer" /v "StartLayoutFile" /t REG_EXPAND_SZ /d "%windir%\layout.xml" /f
 
 :: disable windows updates
 reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "IncludeRecommendedUpdates" /t REG_DWORD /d "0" /f
@@ -1359,84 +1370,4 @@ reg add "HKLM\Software\Microsoft\FTH" /v "Enabled" /t REG_DWORD /d "0" /f
 :: GameBar/FSE Settings
 :: Disables Win+G shortcut
 %currentuser% reg add "HKCU\Software\Microsoft\GameBar" /v "ShowStartupPanel" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\Software\Microsoft\GameBar" /v "GamePanelStartupTipIndex" /t REG_DWORD /d "3" /f
-%currentuser% reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\Software\Microsoft\GameBar" /v "UseNexusForGameBarEnabled" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /t REG_DWORD /d "2" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /t REG_DWORD /d "2" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /t REG_DWORD /d "1" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "1" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /t REG_DWORD /d "2" /f
-reg add "HKLM\Software\Policies\Microsoft\Windows\GameDVR" /v "AllowGameDVR" /t REG_DWORD /d "0" /f
-%currentuser% reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "__COMPAT_LAYER" /t REG_SZ /d "~ DISABLEDXMAXIMIZEDWINDOWEDMODE" /f
-
-:: Disable DWM's AeroPeek
-:: source: Winaero Tweaker
-%currentuser% reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "EnableAeroPeek" /t REG_DWORD /d "0" /f
-reg add "HKLM\Software\Policies\Microsoft\Windows\DWM" /v "DisallowAnimations" /t REG_DWORD /d "1" /f
-%currentuser% reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "Composition" /t REG_DWORD /d "0" /f
-
-:: Add batch (command prompt) files to the right-click "new file" menu
-reg add "HKLM\Software\Classes\.bat\ShellNew" /v "ItemName" /t REG_EXPAND_SZ /d "@C:\Windows\System32\acppage.dll,-6002" /f
-reg add "HKLM\Software\Classes\.bat\ShellNew" /v "NullFile" /t REG_SZ /d "" /f
-
-:: Add registry files to the right-click "new file" menu
-reg add "HKLM\Software\Classes\.reg\ShellNew" /v "ItemName" /t REG_EXPAND_SZ /d "@C:\Windows\regedit.exe,-309" /f
-reg add "HKLM\Software\Classes\.reg\ShellNew" /v "NullFile" /t REG_SZ /d "" /f
-
-:: "Merge as TrustedInstaller" for registry files
-reg add "HKEY_CLASSES_ROOT\regfile\Shell\RunAs" /ve /t REG_SZ /d "Merge As TrustedInstaller" /f
-reg add "HKEY_CLASSES_ROOT\regfile\Shell\RunAs" /v "HasLUAShield" /t REG_SZ /d "1" /f
-reg add "HKEY_CLASSES_ROOT\regfile\Shell\RunAs\Command" /ve /t REG_SZ /d "C:\Windows\DuckOS_modules\nsudo.exe -U:T -P:E reg import "%%1"" /f
-
-:: Disable Bluetooth
-echo %c_red%Disabling Bluetooth...
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\BluetoothUserService" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-sc config BluetoothUserService start=disabled >nul 2>&1
-sc config BTAGService start=disabled >nul 2>&1
-sc config BthAvctpSvc start=disabled >nul 2>&1
-sc config bthserv start=disabled >nul 2>&1
-
-:: Disable HPET and Synthethic Timer
-echo %c_red%Disabling HPET and Synthethic Timer...
-powershell -MTA -Command "Get-PnpDevice | Where-Object { $_.InstanceId -like 'ACPI\PNP0103\2&daba3ff&*' } | Disable-PnpDevice -Confirm:$false"
-bcdedit /deletevalue useplatformclock >nul 2>&1
-bcdedit /set disabledynamictick yes >nul 2>&1
-bcdedit /set useplatformtick yes >nul 2>&1
-
-::::::::::::
-:: Finish ::
-::::::::::::
-
-:: Do not reduce sounds while in a call
-%currentuser% reg add "HKCU\SOFTWARE\Microsoft\Multimedia\Audio" /v "UserDuckingPreference" /t REG_DWORD /d "3" /f
-
-:: ? (google it)
-reg add "HKLM\System\CurrentControlSet\Control\FeatureManagement\Overrides\4\2674077835" /v "EnabledState" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKLM\System\CurrentControlSet\Control\FeatureManagement\Overrides\4\2674077835" /v "EnabledStateOptions" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKLM\System\CurrentControlSet\Control\FeatureManagement\Overrides\4\4095660171" /v "EnabledState" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKLM\System\CurrentControlSet\Control\FeatureManagement\Overrides\4\4095660171" /v "EnabledStateOptions" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell" /v "BagMRU Size" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Switch from Public To Private firewall..
-powershell -NoProfile "$net=get-netconnectionprofile; Set-NetConnectionProfile -Name $net.Name -NetworkCategory Private" >nul 2>&1
-echo %c_green%Done, finalizing...
-
-:: Cancel any pending shutdowns, and restart in 2 seconds.. [with force..]
-shutdown /a
-shutdown /r /t 2 /f
-
-:: Delete the post script!
-start /min "" "cmd.exe" /c del /f /q %0
-exit
-
-:MsgBox [Prompt] [Type] [Title]
-    setlocal enableextensions
-    set "tempFile=%temp%\%~nx0.%random%%random%%random%vbs.tmp"
-    >"%tempFile%" echo(WScript.Quit msgBox("%~1",%~2,"%~3") & cscript //nologo //e:vbscript "%tempFile%"
-    set "exitCode=%errorlevel%" & del "%tempFile%" >nul 2>nul
-    endlocal & exit /b %exitCode%
+%currentuser% reg add "HKCU\Software\Microsoft\GameBar" /v "GamePanelStartupTipIndex" /t REG_DWORD /d "3
