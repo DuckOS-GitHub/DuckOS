@@ -49,8 +49,8 @@ echo %c_purple%Please wait. This may take a moment.
 title Do not close this window
 
 :: Send a message!
-start mshta.exe vbscript:Execute("msgbox ""Welcome to DuckOS, a modification to Windows for enhanced privacy and performance! Thank you for downloading and using DuckOS, we are preparing DuckOS and will be available to use shortly..."",64+4096,""DuckOS Post Install Tweaks"":close")
-start mshta.exe vbscript:Execute("msgbox ""You will be prompted with a few questions, then you can leave your computer running and let us do the rest."",64+4096,""DuckOS Post Install Tweaks"":close")
+call :MsgBox "Welcome to DuckOS, a modification to Windows for enhanced privacy and performance! Thank you for downloading and using DuckOS, we are preparing DuckOS and will be available to use shortly..." 64+4096 "DuckOS Post Install Tweaks"
+call :MsgBox "You will be prompted with a few questions, then you can leave your computer running and let us do the rest." 64+4096 "DuckOS Post Install Tweaks"
 
 :: Change the directory.
 cd %windir%\DuckOS_Modules
