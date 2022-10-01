@@ -647,10 +647,12 @@ title Do not close this window - [50/66] Setting Win32PrioritySeparation
 reg add "HKLM\System\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "38" /f
 
 :: Disable Notification/Action Center
+:: We will use balloons instead.
 title Do not close this window - [51/66] Disabling Action Center
 echo %c_green%Disabling notifications & Action Center...
 %currentuser% reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /t REG_DWORD /d "0" /f
 %currentuser% reg add "HKCU\Software\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" /v "NoTileApplicationNotification" /t REG_DWORD /d "1" /f
+%currentuser% reg add HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer /v EnableLegacyBalloonNotifications /t REG_DWORD /d 1 /f
 echo %c_green%Done.
 
 :: Misc stuff
