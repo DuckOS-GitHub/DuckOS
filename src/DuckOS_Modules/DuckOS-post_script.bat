@@ -1608,11 +1608,8 @@ for %%i in (1 2 3 one two three) do (
     if /i not %choice% equ %%i do ( echo $ Invalid choice. && goto :askAgain)
 )
 if %choice% equ 1 ( goto :tweaks )
-if %choice% equ one ( goto :tweaks )
 if %choice% equ 2 ( set doRestart=yes )
-if %choice% equ two ( set doRestart=yes )
 if %choice% equ 3 ( set doUpdate=no )
-if %choice% equ three ( set doUpdate=no )
 goto :noArgs
 
 :scriptS
@@ -1632,7 +1629,7 @@ exit /b
 :TrustedInstaller
 echo $ Relaunching as TrustedInstaller...
 if %isDuck% equ 1 ( set nsudo=%windir%\DuckOS_Modules\nsudo.exe )
-if /i exist %nsudo% ( %nsudo% -P:E -U:T "%~f0" -onlyTweak && exit )
+if /i exist %nsudo% ( %nsudo% -P:E -U:T "%~f0" -isDuck && exit )
 if not exist %nsudo% (
     cls
     color cf
