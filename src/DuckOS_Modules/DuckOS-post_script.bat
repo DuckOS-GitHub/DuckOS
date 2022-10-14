@@ -32,24 +32,24 @@ powershell -WindowStyle Maximized Write-Host The post install script is starting
 ::::::::::::::::::::::::::::
 
 :: Default values
-set doRestart=no
-set doUpdate=no
-set isDuck=no
-set onlyTweak=no
+set doRestart=0
+set doUpdate=0
+set isDuck=0
+set onlyTweak=0
 
 :: Check if there are no arguments...
 if /i "%*"=="" ( goto :noArgs )
 
 :: Go to the correct function if one of the command line arguments is a valid one.
 for %%i in (%*) do (
-    if /i "%%i" equ "-doRestart" set doRestart=yes
-    if /i "%%i" equ "-doUpdate" set doUpdate=yes
+    if /i "%%i" equ "-doRestart" set doRestart=1
+    if /i "%%i" equ "-doUpdate" set doUpdate=1
     if /i "%%i" equ "-onlyTweak" goto :tweaks
-    if /i "%%i" equ "-isDuck" set isDuck=yes
+    if /i "%%i" equ "-isDuck" set isDuck=1
 )
 
 :: Update the script
-if /i %doUpdate%=yes (
+if /i %doUpdate%=1 (
     echo %c_red%Updating the script..
     curl --progress-bar --verbose https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/DuckOS_Modules/DuckOS-post_script.bat -o "%~f0"
     call "%~f0" %* -doUpdate
