@@ -44,16 +44,61 @@ if /i "%*"=="" ( goto :noArgs )
 for %%i in (%*) do (
     if /i "%%i" equ "-doRestart" set doRestart=1
     if /i "%%i" equ "-doUpdate" set doUpdate=1
-    if /i "%%i" equ "-isDuck" set isDuck=1
     if /i "%%i" equ "-onlyTweak" goto :tweaks
+    if /i "%%i" equ "-isDuck" set isDuck=1
 )
 
 :: Update the script
-if /i %doUpdate% equ 1 (
+if /i %doUpdate%=1 (
     echo %c_red%Updating the script..
     curl --progress-bar --verbose https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/DuckOS_Modules/DuckOS-post_script.bat -o "%~f0"
     call "%~f0" %* -doUpdate
 )
+
+:: Here we go
+:init
+setlocal DisableDelayedExpansion
+set "batchPath=%~0"
+for %%k in (%0) do set batchName=%%~nk
+set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+setlocal EnableDelayedExpansion
+
+:checkPrivileges
+NET FILE 1>NUL 2>NUL
+if '%errorlevel%' == '0' (
+    goto gotPrivileges
+) else (
+    setlocal DisableDelayedExpansion
+    choice /n /m "Permission denied. Try again? [Y/N]"
+    if errorlevel 2 (
+        echo Permission denied. To properly apply the tweaks, make sure to run it as admin!
+        echo Press any key to close this window... & pause >nul
+	exit
+    ) else (
+        if errorlevel 1 (
+            echo Alright.
+            goto getPrivileges
+            title You may now close this window - Permission denied
+        )
+    )
+)
+
+:getPrivileges
+setlocal EnableDelayedExpansion
+if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
+echo Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
+echo args = "ELEV " >> "%vbsGetPrivileges%"
+echo For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
+echo args = args ^& strArg ^& " "  >> "%vbsGetPrivileges%"
+echo Next >> "%vbsGetPrivileges%"
+echo UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+"%SystemRoot%\System32\WScript.exe" "%vbsGetPrivileges%" %*
+exit /B
+
+:gotPrivileges
+setlocal & pushd .
+cd /d %~dp0
+if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
 :: Make the script faster by putting a higher priority.
 wmic process where name="cmd.exe" CALL setpriority 128
@@ -76,27 +121,6 @@ echo %c_purple%Please wait. This may take a moment.
 :: Various different sources and google..
 
 :tweaks
-
-DISM >NUL || ( @pushd %~dp0 & fltmc | find "." && (powershell start '%~f0' ' %* -tweakONLY' -verb runas 2>nul && exit /b) )
-
-:: Check if the user didn't accept the uac prompt...
-dism >nul 2>&1 || (
-	mode 500, 800
-	title DuckOS Post Script: Permission Denied
-	color cf
-	cls
-	echo.
-	echo  DuckOS Post Script: Permission Denied:
-	echo.
-	echo  Can't use %USERNAME%'s Administrator rights.
-    echo  To properly apply the tweaks, make sure to run it as admin!
-    echo.
-	powershell -NoProfile -Command "start-Process %~0 -Verb runas | Out-Null" >NUL && exit
-	echo Press any key to exit...
-	pause >nul
-	exit 3
-)
-
 
 :: Check if the user is running the script as TrustedInstaller...
 whoami|findstr /i "NT AUTHORITY\SYSTEM" >nul
