@@ -1204,10 +1204,12 @@ for /f "tokens=*" %%i in ('wmic PATH Win32_PnPEntity GET DeviceID ^| findstr "US
 	reg add "HKLM\SYSTEM\CurrentControlSet\Services\pci\Parameters" /v "ASPMOptOut" /t	reg_DWORD /d "1" /f
 )
 
-:: Import and set the powerplan
-powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a
-powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
-powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61
+:: Delete power plans
+if %isDuck% equ 1 (
+    powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a
+    powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+    powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61
+)
 
 echo %c_green%Done.
 
@@ -1303,9 +1305,10 @@ if %isDuck% equ 1 (
         devmanview /disable "WAN Miniport (PPPOE)"
         devmanview /disable "WAN Miniport (PPTP)"
         devmanview /disable "WAN Miniport (SSTP)"
+    ) else (
+        echo $ DevManView is missing, cannot disable unnecessary devices in Device Management...
     )
 )
-if not exist %windir%\DuckOS_Modules\devmanview.exe ( echo $ DevManView is missing, cannot disable unnecessary devices in Device Management.. )
 
 ::::::::::::::
 :: Clean up ::
@@ -1576,9 +1579,12 @@ reg add "HKEY_CURRENT_USER\Software\DuckOS\Post Script" /v RunningState /d 2 /t 
 :: Cancel any pending shutdowns, and restart in 2 seconds.. [with force option]
 :: If the argument -doRestart is selected, then we will restart..
 shutdown /a
-
-if /i "%doRestart%" equ "yes" ( shutdown /r /t 5 /f ) else (
-	start mshta.exe vbscript:Execute("msgbox ""You selected to not restart. Please restart as soon as possible to apply changes!"",64+4096,""DuckOS Tweaks"":close")
+if %doRestart% equ 1 (
+    if %isDuck% equ 1 (
+        shutdown -r -t 10 -f -c Your system is almost ready!
+    )
+) else (
+    start mshta.exe vbscript:Execute("msgbox ""You selected to not restart. Please restart as soon as possible to apply changes!"",64+4096,""DuckOS Tweaks"":close")
 )
 
 :: Delete the post script!
@@ -1638,7 +1644,7 @@ if not exist %nsudo% (
         set /p nsudo=Please enter NSudo path:
     ) else (
         if errorlevel 1 (
-            prompt The script won't run with it's full potential. Continue to the tweaks?
+            prompt The script won't run with it's full potential. Continue to the tweaks? [Y/N]
 	) else (
             if errorlevel 2 (
                 goto :tweaks
