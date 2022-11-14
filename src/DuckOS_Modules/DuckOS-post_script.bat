@@ -208,6 +208,8 @@ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
 :: Make the script faster by putting a higher priority.
 wmic process where name="cmd.exe" CALL setpriority 32768
+:: Cmd.exe probably does not do the actual script execution. conhost might. idk. but just in case -WilliamAnimate
+wmic process where name="conhost.exe" CALL setpriority 32768
 echo %c_purple%Please wait. This may take a moment.
 
 :: Check if the user is running the script as TrustedInstaller...
