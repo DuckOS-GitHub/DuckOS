@@ -5,7 +5,7 @@
   DuckOS
   <br>
 </h1>
-<h4 align="center">An open-sourced Windows operating system, which is a modification of the original Windows 10, designed to reduce latency and increase performance.</h4>
+<h4 align="center">A modification of the original Windows 10, designed to reduce latency and increase performance.</h4>
 
 <p align="center">
   <a href="https://github.com/DuckOS-GitHub/DuckOS/blob/main/src/DuckOS_Modules/DuckOS-post_script.bat"><img src="https://img.shields.io/badge/post%20install%20script-download-green" alt="Post Install Script"></a>
