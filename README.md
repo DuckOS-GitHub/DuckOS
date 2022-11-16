@@ -23,16 +23,15 @@
 
 # DuckOS
 
-## What is DuckOS?
-
-A open-sourced Windows operating system, which is a modification of the original windows 10, designed to improve performance and reduce latency.
-
-### Notes & Disclaimers
+## Notes & Disclaimers
 ⚠️ ***This ISO IS STILL IN DEVELOPEMENT / ALPHA! Meaning bugs will occur, but DuckOS is stable enough!***<br>
 📝 This ISO is a highly modified fork of a different custom OS! Be aware of this and **don't say the ISO is stolen!**<br>
 🐧 If the Windows image for some reason isn't good for you, check out our Linux version :)<br>
 
-### **What do we offer?**
+## Why should you trust us?
+<a href="https://discord.gg/8pDMf44t6R"><img src="https://cdn.discordapp.com/attachments/999774689138311288/1011900995653095484/IMG_20220824_093312.jpg" alt="stefkeec's thought about DuckOS" width="900"></a>
+
+## **What do we offer?**
 
 DuckOS is **pre-tweaked**. While maintaining compatibility, it's also good for performance. Here's a good list of what we did to make the image very fast:
 
@@ -48,31 +47,11 @@ DuckOS is **pre-tweaked**. While maintaining compatibility, it's also good for p
 - ~ 705 Components removed.
 - Removed almost every unneeded Windows boot entry, including clearing scheduled tasks...
 
-<h1 align="center">
-  <br>
-    <br>
-    Why should you trust us?
-  <br>
-  <a href="https://discord.gg/8pDMf44t6R/"><img src="https://cdn.discordapp.com/attachments/999774689138311288/1011900995653095484/IMG_20220824_093312.jpg" alt="DuckOS" width="900"></a>
-</h1>
-
-## DuckOS vs Windows 10 Original (*stock*)
-
-DuckOS is really good at many things, here's a list that why you **should use** DuckOS and **not** Windows 10 Original (*stock*):
-- Processes, while it doesn't matter as much, it's good too see that not much is running on your system.. which is a good sign of good component removing.
-- Ram Usage, matters, because Windows 10 Original wastes your RAM doing nothing, we made sure that doesn't happen on DuckOS by removing lot's of components.
-- CPU at 0% usage idle, but this really depends on the processor.
-- Less services
-- Less unneeded drivers
-- More FPS, less lagging in general
-- Faster wifi because of tweaks
-- and more!
-
-### **Debloated**
+## **Debloated**
 
 DuckOS is heavily debloated, pre-installed applications and other components are removed. Although this can break some compatibility, it significantly reduces ISO and install size. Programs such as Windows Defender, and such are stripped completely. This modification is focused on pure gaming, but most work and business.
 
-### Security
+## Security
 
 Since there are a lot of features disabled for performance, we also care about security.
 
@@ -91,7 +70,19 @@ Those features are:
 
 *NOTE: Clicking on the blue text will re-direct you to a link with an explanation for each and every feature.*
 
-### Cons [What's not so good about DuckOS?]
+# DuckOS vs Windows 10 Original (*stock*)
+
+DuckOS is really good at many things, here's a list that why you **should use** DuckOS and **not** Windows 10 Original (*stock*):
+- Processes, while it doesn't matter as much, it's good too see that not much is running on your system.. which is a good sign of good component removing.
+- RAM Usage, matters, because Windows 10 wastes your RAM doing nothing, we made sure that doesn't happen on DuckOS by removing lots of components.
+- CPU at 0% usage idle, but this really depends on the processor.
+- Less services
+- Less unneeded drivers
+- More FPS, less lagging in general
+- Faster Wi-Fi because of tweaks
+- and more!
+
+# Cons [What's not so good about DuckOS?]
 
 But we aren't perfect, and here's some things you shoud considered before installing DuckOS on your computer:
 - Lots of features disabled/broken/limited due to lots of components removed.
