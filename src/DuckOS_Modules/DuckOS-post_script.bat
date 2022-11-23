@@ -1983,8 +1983,8 @@ if not exist %windir%\DuckOS_Modules\devmanview.exe ( echo $ DevManView is missi
 :: Misc Tweaks
 lodctr /r >nul 2>&1
 
-:: Disable USB Autorun/play
-reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoAutorun" /t REG_DWORD /d "1" /f
+:: Enable USB Autorun/play
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoAutorun" /t REG_DWORD /d "0" /f
 
 :: Disable Network Navigation pane in file explorer
 reg add "HKCR\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\ShellFolder" /v "Attributes" /t REG_DWORD /d 2962489444 /f
@@ -2158,20 +2158,6 @@ if /i "%isDuck" equ "1" (
     reg add "HKCR\regfile\Shell\RunAs\Command" /ve /t REG_SZ /d "%windir%\DuckOS_modules\nsudo.exe -U:T -P:E reg import "%%1"" /f
 )
 
-:: Disable Bluetooth
-echo %c_red%Disabling Bluetooth...
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\BluetoothUserService" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-sc config BluetoothUserService start=disabled >nul 2>&1
-sc config BTAGService start=disabled >nul 2>&1
-sc config BthAvctpSvc start=disabled >nul 2>&1
-sc config bthserv start=disabled >nul 2>&1
-
-:: Disable HPET and Synthethic Timer
-echo %c_red%Disabling HPET and Synthethic Timer...
-powershell -MTA -Command "Get-PnpDevice | Where-Object { $_.InstanceId -like 'ACPI\PNP0103\2&daba3ff&*' } | Disable-PnpDevice -Confirm:$false"
-bcdedit /deletevalue useplatformclock >nul 2>&1
-bcdedit /set disabledynamictick yes >nul 2>&1
-bcdedit /set useplatformtick yes >nul 2>&1
 
 ::::::::::::
 :: Finish ::
