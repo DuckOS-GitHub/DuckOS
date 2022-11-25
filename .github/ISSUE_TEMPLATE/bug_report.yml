@@ -1,5 +1,5 @@
 name: Bug report
-description: Create a report to help us improve
+description: Create a report to help us improve DuckOS
 labels: bug
 assignees: fikinoob
 body:
@@ -7,7 +7,7 @@ body:
   attributes:
     value: |
       Thanks for taking the time to fill out this bug report for DuckOS! Fill out the following form to your best ability to help us fix the problem.
-      Only use this if you're absolutely sure that you found a bug and can reproduce it. For anything else, use: [our Discord server](https://dsc.gg/duckos).
+      Only use this if you are absolutely sure that you found a bug and can reproduce it. For anything else, use: [our Discord server](https://dsc.gg/duckos).
 - type: textarea
   attributes:
     label: Describe the bug
@@ -17,7 +17,7 @@ body:
 - type: textarea
   attributes:
     label: To Reproduce
-    description: Steps to reproduce this behaviour
+    description: Steps to reproduce this behavior
     placeholder: |
       1. Go to '...'
       2. Click on '...'
@@ -27,7 +27,7 @@ body:
     required: true
 - type: textarea
   attributes:
-    label: Expected behaviour
+    label: Expected behavior
     description: A clear and concise description of what you expected to happen.
   validations:
     required: true
@@ -51,7 +51,7 @@ body:
     description: |
       - CPU [Intel or AMD, include specifics]
       - System Drive Type [e.g. SSD, HDD]
-      - *(If you're using a virtualized environment, please also specify the configurations if possible.)*
+      - *(If you are using a virtualized environment, please also specify the configurations if possible.)*
   validations:
     required: true
 - type: dropdown

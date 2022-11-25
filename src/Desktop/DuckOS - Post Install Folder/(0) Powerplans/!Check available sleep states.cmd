@@ -1,2 +1,0 @@
-powercfg /a
-pause

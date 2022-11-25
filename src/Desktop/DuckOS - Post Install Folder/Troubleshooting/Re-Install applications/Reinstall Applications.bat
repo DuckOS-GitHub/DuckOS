@@ -1,23 +1,24 @@
 @echo off && cls && echo ! Loaded.
 echo.
-echo ! This will RE-INSTALL ALL DuckOS pre-intalled apps below:
-echo 1. 7zip
-echo 2. OpenShell
-echo 3. VCRedists
+echo info: this will re-install all DuckOS' preinstalled apps
+echo - 7-Zip
+echo - Open-Shell
+echo - Visual C++ Redists
 pause
 if exist C:\Windows\Setup\Files\7zip.msi (
-	echo ! 7zip installer found.. installing right now..
-	start /wait "" "C:\Windows\Setup\Files\7zip.msi" /quiet
-	echo ! Done.
+	echo info: 7-Zip  installer found - installing
+	"C:\Windows\Setup\Files\7zip.msi" /quiet
+	echo info: Done.
 )
 if exist C:\Windows\Setup\Files\vcredist.exe (
-	echo ! VCRedist installer found.. installing right now..
-	start /wait "" "C:\Windows\Setup\Files\vcredist.exe" /ai
-	echo ! Done.
+	echo info: Visual C++ Redists installer found - installing
+	"C:\Windows\Setup\Files\vcredist.exe" /ai
+	echo info: Done.
 )
 if exist C:\Windows\Setup\Files\openshell.exe (
-	echo ! OpenShell installer found.. installing right now..
-	start /wait "" "C:\Windows\Setup\Files\openshell.exe" /qn ADDLOCAL=StartMenu
-	echo ! Done.
+	echo info: Open-Shell installer found - installing
+	"C:\Windows\Setup\Files\openshell.exe" /qn ADDLOCAL=StartMenu
+	echo info: Done.
 )
-exit
+echo info: press any key to exit
+pause > nul & exit /b 1
