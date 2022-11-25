@@ -392,44 +392,9 @@ if exist %windir%\DuckOS_Modules\Utils\7z2201-x64.msi (
     start /wait "" "7z2201-x64.msi" /passive
     echo Done.
     echo Making sure 7zip is the default format for zips...
+    for %%i in (".001", ".7z", ".arj", ".bz2", ".bzip2", ".cab", ".cpio", ".deb", ".dmg", ".esd", ".fat", ".gz", ".gzip", ".hfs", ".iso", ".lha", ".lzh", ".lzma", ".ntfs", ".rar", ".rpm", ".squashfs", ".swm", ".tar", ".taz", ".tbz", ".tbz2", ".tgz", ".tpz", ".txz", ".vhd", ".wim", ".xar", ".xz", ".z", ".zip") do ( reg add "HKLM\Software\Classes\.%%~i" /ve /t REG_SZ /d "7-Zip.%%~i" /f >nul 2>&1 )
     reg add "HKCU\Software\7-Zip\Options" /v "ContextMenu" /t REG_DWORD /d "2147488038" /f >nul 2>&1
     reg add "HKCU\Software\7-Zip\Options" /v "ElimDupExtract" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.001" /ve /t REG_SZ /d "7-Zip.001" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.7z" /ve /t REG_SZ /d "7-Zip.7z" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.arj" /ve /t REG_SZ /d "7-Zip.arj" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.bz2" /ve /t REG_SZ /d "7-Zip.bz2" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.bzip2" /ve /t REG_SZ /d "7-Zip.bzip2" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.cab" /ve /t REG_SZ /d "7-Zip.cab" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.cpio" /ve /t REG_SZ /d "7-Zip.cpio" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.deb" /ve /t REG_SZ /d "7-Zip.deb" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.dmg" /ve /t REG_SZ /d "7-Zip.dmg" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.esd" /ve /t REG_SZ /d "7-Zip.esd" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.fat" /ve /t REG_SZ /d "7-Zip.fat" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.gz" /ve /t REG_SZ /d "7-Zip.gz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.gzip" /ve /t REG_SZ /d "7-Zip.gzip" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.hfs" /ve /t REG_SZ /d "7-Zip.hfs" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.iso" /ve /t REG_SZ /d "7-Zip.iso" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.lha" /ve /t REG_SZ /d "7-Zip.lha" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.lzh" /ve /t REG_SZ /d "7-Zip.lzh" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.lzma" /ve /t REG_SZ /d "7-Zip.lzma" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.ntfs" /ve /t REG_SZ /d "7-Zip.ntfs" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.rar" /ve /t REG_SZ /d "7-Zip.rar" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.rpm" /ve /t REG_SZ /d "7-Zip.rpm" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.squashfs" /ve /t REG_SZ /d "7-Zip.squashfs" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.swm" /ve /t REG_SZ /d "7-Zip.swm" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.tar" /ve /t REG_SZ /d "7-Zip.tar" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.taz" /ve /t REG_SZ /d "7-Zip.taz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.tbz" /ve /t REG_SZ /d "7-Zip.tbz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.tbz2" /ve /t REG_SZ /d "7-Zip.tbz2" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.tgz" /ve /t REG_SZ /d "7-Zip.tgz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.tpz" /ve /t REG_SZ /d "7-Zip.tpz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.txz" /ve /t REG_SZ /d "7-Zip.txz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.vhd" /ve /t REG_SZ /d "7-Zip.vhd" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.wim" /ve /t REG_SZ /d "7-Zip.wim" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.xar" /ve /t REG_SZ /d "7-Zip.xar" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.xz" /ve /t REG_SZ /d "7-Zip.xz" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.z" /ve /t REG_SZ /d "7-Zip.z" /f >nul 2>&1
-    reg add "HKLM\Software\Classes\.zip" /ve /t REG_SZ /d "7-Zip.zip" /f >nul 2>&1
     reg add "HKLM\Software\Classes\7-Zip.001" /ve /t REG_SZ /d "001 Archive" /f >nul 2>&1
     reg add "HKLM\Software\Classes\7-Zip.001\DefaultIcon" /ve /t REG_SZ /d "C:\Program Files\7-Zip\7z.dll,9" /f >nul 2>&1
     reg add "HKLM\Software\Classes\7-Zip.001\shell" /ve /t REG_SZ /d "" /f >nul 2>&1
@@ -663,7 +628,7 @@ if exist %windir%\DuckOS_Modules\vcredist.exe (
 :: Install bleachbit
 if exist %WINDIR%\DuckOS_Modules\Utils\BleachBit-4.4.2-setup.exe (
     echo %c_gold%Installing BleachBit..
-    start /wait "" "%WINDIR%\DuckOS_Modules\Utils\BleachBit-4.4.2-setup.exe" /allusers /S
+    start /min /wait "" "%WINDIR%\DuckOS_Modules\Utils\BleachBit-4.4.2-setup.exe" /allusers /S
     echo %c_green%Done.
 )
 
@@ -1018,11 +983,11 @@ reg add "HKLM\Software\Policies\Microsoft\Windows\PreviewBuilds" /v "AllowBuildP
 echo %c_green%Done.
 
 :: Change Folder options
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowStatusBar" /t REG_DWORD /d "1" /f 1>NUL 2>NUL
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f 1>NUL 2>NUL
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowStatusBar" /t REG_DWORD /d "1" /f
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f
 
 :: Remove "- Shortcut" text from shortcuts
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates" /v "ShortcutNameTemplate" /t REG_SZ /d "\"%%s.lnk\"" /f 1>NUL 2>NUL
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates" /v "ShortcutNameTemplate" /t REG_SZ /d "\"%%s.lnk\"" /f
 
 :: Maps Updates/Downloads
 title Do not close this window - [33/66] Maps Updates/Downloads
@@ -1237,9 +1202,9 @@ title Do not close this window - [44/66] Disabling Remote Desktop
 echo %c_red%Disabling Remote Desktop...
 reg add "HKLM\SYSTEM\CurRentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d "1" /f
 
-:: Hide audio devices that ARENT connected.
-title Do not close this window - [45/66] Hiding unconnected audio devices...
-echo %c_cyan%Hiding audio devices that aren't connected...
+:: Hide audio devices that AREN'T connected.
+title Do not close this window - [45/66] Hiding disconnected audio devices...
+echo %c_cyan%Hiding disconnected audio devices...
 reg add "HKCU\SOFTWARE\Microsoft\Multimedia\Audio\DeviceCpl" /v "ShowHiddenDevices" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Multimedia\Audio\DeviceCpl" /v "ShowDisconnectedDevices" /t REG_DWORD /d "0" /f >nul 2>&1
 echo %c_green%Done.
@@ -1247,9 +1212,7 @@ echo %c_green%Done.
 :: Restore the photo viewer from Windows 7
 title Do not close this window - [46/66] Photo Viewer
 echo %c_cyan%Restoring photo viewer from windows 7...
-for %%i in (tif tiff bmp dib gif jfif jpe jpeg jpg jxr png) do (
-	reg add "HKLM\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /v ".%%~i" /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f >nul 2>&1
-)
+for %%i in (tif tiff bmp dib gif jfif jpe jpeg jpg jxr png) do ( reg add "HKLM\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" /v ".%%~i" /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f >nul 2>&1 )
 echo %c_green%Done.
 
 :: Windows Media Player configuration
@@ -1261,7 +1224,7 @@ reg add "HKLM\SOFTWARE\Microsoft\MediaPlayer\Preferences" /v "AcceptedEULA" /t R
 reg add "HKLM\SOFTWARE\Microsoft\MediaPlayer\Preferences" /v "FirstTime" /t REG_DWORD /d "1" /f >nul 2>&1
 echo %c_green%Done.
 
-:: MMCSS Settings
+:: MMCS (Multimedia Class Scheduler Service) Settings
 title Do not close this window - [48/66] Configuring MMCSS
 echo %c_cyan%Configuring MMCSS...
 reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "10" /f
@@ -1277,7 +1240,8 @@ reg add "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBa
 echo %c_green%Done.
 
 :: Set Win32PrioritySeparation 26 hex/38 dec.
-:: Explanation: "foreground processes more priority and make your CPU faster." source: https://richannel.org/win32-priority-separation/
+:: Explanation: "foreground processes more priority and make your CPU faster" 
+:: Guide: https://richannel.org/win32-priority-separation/
 title Do not close this window - [50/66] Setting Win32PrioritySeparation
 reg add "HKLM\System\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "38" /f
 
@@ -1318,9 +1282,12 @@ title Do not close this window - [55/66] Enabling VBPoCI
 echo %c_cyan%Enabling Virtualization Based Protection of Code Integrity
 reg add "HKLM\System\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" /v "Enabled" /t REG_DWORD /d "0" /f
 
-::::Context Menu::::
+::::::::::::::::::
+:: Context Menu ::
+::::::::::::::::::
 title Do not close this window - [56/66] Configuring context menu
 echo %c_cyan%Configuring context menu...
+
 :: Install .CAB files in the "Context Menu"
 reg delete "HKCR\CABFolder\Shell\RunAs" /f >nul 2>nul
 reg add "HKCR\CABFolder\Shell\RunAs" /ve /t REG_SZ /d "Install" /f
@@ -1415,6 +1382,7 @@ if /i "%isDuck" equ "1" (
 :: Mitigations ::
 :::::::::::::::::
 
+:: Misc
 title Do not close this window - [61/66] Optimizing system
 echo %c_cyan%Optimizing system...
 
@@ -1434,7 +1402,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\kbdhid\Parameters" /v "ThreadPri
 :: Disable Chain Validation
 reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "DisableExceptionChainValidation" /t reg_DWORD /d "1" /f >NUL 2>&1
 
-:: Disable FTH
+:: Disable the FTH (Fault Tolerant Heap)
 reg add "HKLM\Software\Microsoft\FTH" /v "Enabled" /t reg_DWORD /d "0" /f >NUL 2>&1
 
 :: CSRSS mitigations
@@ -1444,9 +1412,7 @@ reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution 
 reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions" /v IoPriority /t reg_DWORD /d "3" /f >NUL 2>&1
 
 :: Set System Processes Priority below normal
-for %%i in (lsass.exe sppsvc.exe SearchIndexer.exe fontdrvhost.exe sihost.exe ctfmon.exe) do (
-  reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%i\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d "5" /f
-)
+for %%i in (lsass.exe sppsvc.exe SearchIndexer.exe fontdrvhost.exe sihost.exe ctfmon.exe) do ( reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%i\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d "5" /f )
 
 :::::::::::::::::::::::
 :: PowerShell Tweaks ::
@@ -1472,33 +1438,30 @@ reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "Mitig
 reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationOptions" /t reg_BINARY /d "%mitigation_mask%" /f >NUL 2>&1
 
 :: ASLR - find ntoskrnl strings
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "MoveImages" /t reg_DWORD /d "0" /f >NUL 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "MoveImages" /t REG_DWORD /d "0" /f >NUL 2>&1
 
 :: Spectre & Meltdown
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettings /t reg_DWORD /d "0" /f >NUL 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverride /t reg_DWORD /d "3" /f >NUL 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverrideMask /t reg_DWORD /d "3" /f >NUL 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettings /t REG_DWORD /d "0" /f >NUL 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverride /t REG_DWORD /d "3" /f >NUL 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverrideMask /t REG_DWORD /d "3" /f >NUL 2>&1
 
 :: DWM
-reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "EnableAeroPeek" /t reg_DWORD /d "0" /f >NUL 2>&1
-reg add "HKLM\Software\Policies\Microsoft\Windows\DWM" /v "DisallowAnimations" /t reg_DWORD /d "1" /f >NUL 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "Composition" /t reg_DWORD /d "0" /f >NUL 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "EnableAeroPeek" /t REG_DWORD /d "0" /f >NUL 2>&1
+reg add "HKLM\Software\Policies\Microsoft\Windows\DWM" /v "DisallowAnimations" /t REG_DWORD /d "1" /f >NUL 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "Composition" /t REG_DWORD /d "0" /f >NUL 2>&1
 
 :: Security Tweaks 
-reg add "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters" /v "RestrictNullSessAccess" /t reg_DWORD /d "1" /f >NUL 2>&1
-reg add "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters" /v "DisableCompression" /t reg_DWORD /d "1" /f >NUL 2>&1
-reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "RestrictAnonymous" /t reg_DWORD /d "1" /f >NUL 2>&1
-reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "RestrictAnonymousSAM" /t reg_DWORD /d "1" /f >NUL 2>&1
-reg add "HKLM\System\CurrentControlSet\Services\NetBT\Parameters" /v "NodeType" /t reg_DWORD /d "2" /f >NUL 2>&1
+reg add "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters" /v "RestrictNullSessAccess" /t REG_DWORD /d "1" /f >NUL 2>&1
+reg add "HKLM\System\CurrentControlSet\Services\LanManServer\Parameters" /v "DisableCompression" /t REG_DWORD /d "1" /f >NUL 2>&1
+reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "RestrictAnonymous" /t REG_DWORD /d "1" /f >NUL 2>&1
+reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "RestrictAnonymousSAM" /t REG_DWORD /d "1" /f >NUL 2>&1
+reg add "HKLM\System\CurrentControlSet\Services\NetBT\Parameters" /v "NodeType" /t REG_DWORD /d "2" /f >NUL 2>&1
 
 :: Enable Hardware Accelerated Scheduling (HAGS)
 reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t reg_DWORD /d "2" /f >NUL 2>&1
 
 :: Restrict Windows' communication
 reg add "HKLM\Software\Policies\Microsoft\InternetManagement" /v "RestrictCommunication" /t REG_DWORD /d "1" /f
-
-:: Win32PrioritySeparation 26 hex/38 dec
-reg add "HKLM\System\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t reg_DWORD /d "38" /f >NUL 2>&1
 
 :: Mouse Settings
 reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t reg_SZ /d "10" /f >NUL 2>&1
@@ -1514,12 +1477,14 @@ reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /v "LoggingDis
 reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\Consent" /v "DefaultOverrideBehavior" /t REG_DWORD /d "1" /f
 reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\Consent" /v "DefaultConsent" /t REG_DWORD /d "0" /f
 
-:: Delete defaultuser0 used during OOBE
+:: Delete the defaultuser0 account which is used during OOBE and is no longer needed
 net user defaultuser0 /delete >NUL 2>&1 
 
-:: Disable "Administrator" used using OEM
-net user administrator /active:no >NUL 2>&1 
-echo %c_green%Done.
+:: Disable the "Administrator" account which can be exploited.. that's why we disable it.
+if "%isDuck%" equ "1" (
+    net user administrator /active:no >NUL 2>&1 
+    echo %c_green%Done.
+)
 
 ::::::::::::::
 :: Internet ::
@@ -1542,6 +1507,8 @@ for /f %%s in ('reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Net
 :: TCP ::
 :::::::::
 
+:: Enable DNS over HTTPS
+:: Manual guide: https://www.nextofwindows.com/how-to-enable-dns-over-http-doh-on-windows-10-or-edge-chromium 
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "EnableAutoDoh" /t REG_DWORD /d "2" /f >NUL 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NegativeCacheTime" /t REG_DWORD /d "0" /f >NUL 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NegativeSOACacheTime" /t REG_DWORD /d "0" /f >NUL 2>&1
@@ -1738,13 +1705,13 @@ for /f "tokens=*" %%i in ('wmic PATH Win32_PnPEntity GET DeviceID ^| findstr "US
 	reg add "HKLM\SYSTEM\CurrentControlSet\Services\pci\Parameters" /v "ASPMOptOut" /t	reg_DWORD /d "1" /f
 )
 
-:: Import and set the powerplan
+:: Deleting default, unnecessery powerplans..
 if /i "%isDuck" equ "1" (
+    echo Deleting default, unnecessery powerplans..
     powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a
     powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
     powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61
 )
-
 echo %c_green%Done.
 
 title Do not close this window - [65/66] Configuring services
@@ -1855,6 +1822,7 @@ if %isDuck% equ 1 (
 
 title Do not close this window - [66/66] Final tweaks
 echo %c_cyan%Tweaking last things...
+
 :: Processor
 reg add "HKLM\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\CursorMagnetism" /v DistanceThresholdInDIPS /t REG_DWORD /d 00000028 /f >NUL 2>&1
 reg add "HKLM\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\CursorMagnetism" /v MagnetismDelayInMilliseconds /t REG_DWORD /d 00000032 /f >NUL 2>&1
@@ -1866,6 +1834,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\CursorMagnet
 reg add "HKLM\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\CursorSpeed" /v CursorUpdateInterval /t REG_DWORD /d 1 /f >NUL 2>&1
 
 :: Valorant DSCP policies
+:: The tweaks below can work for any game/exe, but Valorant has the best performance boost.
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\QoS\VALORANT" /v "Version" /t REG_SZ /d "1.0" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\QoS\VALORANT" /v "Application Name" /t REG_SZ /d "valorant.exe" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\QoS\VALORANT" /v "Protocol" /t REG_SZ /d "*" /f
@@ -2003,7 +1972,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabled" /t r
 :: Set Hibernation type to Reduced
 powercfg /h /type reduced
 
-:: Disable windows updates
+:: Disable/Configure windows updates
 reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "IncludeRecommendedUpdates" /t REG_DWORD /d "0" /f
 reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "AutoInstallMinorUpdates" /t REG_DWORD /d "0" /f
 reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferQualityUpdates" /t REG_DWORD /d "1" /f
