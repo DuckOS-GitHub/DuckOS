@@ -48,7 +48,7 @@ Doing all of these _are not_ required but appreciated. Please mention in the pul
 Testing and reviewing should be very easy, here is what to test:
 
 - Look over your changes, make sure there is nothing you have missed.
-- First, test it on a virtual machine, my recommedation is VMware Workstation. A good alternative is Oracle VirtualBox.
+- First, test it on a virtual machine, my recommedation is [VMware Workstation](https://www.vmware.com/products/workstation-pro.html). A good alternative is [Oracle VirtualBox](https://www.virtualbox.org).
 - Test what your contribution affects, this is dependant on what you change.
 - Test basic programs and functionalities.
 - Test on an actual machine now, repeat the steps above.
