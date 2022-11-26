@@ -31,7 +31,7 @@ We love feedback, if you have any ideas, we would love to hear them! Whether it 
 All of these can be done by either:
 
 - Making an [issue](https://github.com/DuckOS-GitHub/DuckOS/issues/new/choose)
-- Creating a [pull request](https://github.com/DuckOS-GitHub/DuckOS/Atlas/pulls)
+- Creating a [pull request](https://github.com/DuckOS-GitHub/DuckOS/pulls)
 
 ## Adding to the code
 
