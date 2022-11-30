@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -44,6 +45,11 @@ namespace DuckOSUpdater.Forms
                                 MessageBox.Show("Update successful!");
                                 label2.Text = "Working on updates...";
                                 this.WindowState = FormWindowState.Minimized;
+                                TopMost = false;
+                                break;
+                            case "RUN":
+                                Console.WriteLine("Launching " + r[1]);
+                                Process.Start(r[1]);
                                 break;
                         }
                     }
@@ -70,6 +76,7 @@ namespace DuckOSUpdater.Forms
             button1.Enabled = false;
             button2.Enabled = false;
             this.WindowState = FormWindowState.Minimized;
+            TopMost = false;
             comms.Send("DENY");
         }
 
@@ -81,6 +88,7 @@ namespace DuckOSUpdater.Forms
             richTextBox1.Text = wc.DownloadString("https://github.com/IfinderCodes/DuckOS-contrib/raw/main/src/Online_Updater/Changelog.txt");
             button1.Enabled = true;
             button2.Enabled = true;
+            TopMost = false;
         }
     }
 }

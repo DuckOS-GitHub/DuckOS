@@ -37,7 +37,7 @@ namespace DuckOSUpdaterService.Services
                 string currentversion = Downloadmgr.DownloadString("https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/Online_Updater/version.txt");
                 EventLog.WriteEntry("DuckOS Updater", "Downloaded starter version! ver: " + currentversion, EventLogEntryType.SuccessAudit);
                 string skipversiontemp = "";
-                process.Send("AVAILABLE");
+                /*process.Send("AVAILABLE");
                 if (process.Recieve().Split('|')[0] == "ACCEPT")
                 {
                     Thread.Sleep(4000);
@@ -47,7 +47,7 @@ namespace DuckOSUpdaterService.Services
                 {
                     skipversiontemp = Downloadmgr.DownloadString("https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/Online_Updater/version.txt");
                     EventLog.WriteEntry("DuckOS Updater", "Skipping version " + skipversiontemp, EventLogEntryType.Warning);
-                }
+                }*/
                 while (true)
                 {
                     if(Downloadmgr.DownloadString("https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/Online_Updater/version.txt") != currentversion)
@@ -63,14 +63,34 @@ namespace DuckOSUpdaterService.Services
                             {
                                 EventLog.WriteEntry("DuckOS Updater", "Initializing an update! Version: " + Downloadmgr.DownloadString("https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/Online_Updater/version.txt"), EventLogEntryType.Information);
                                 process.Send("STATUS|Downloading FileTable");
-                                string[] filetable = Downloadmgr.DownloadString("https://raw.githubusercontent.com/DuckOS-GitHub/DuckOS/main/src/Online_Updater/version.txt").Split(char.Parse("\n"));
+                                string[] filetable = Downloadmgr.DownloadString("https://github.com/IfinderCodes/DuckOS-contrib/raw/main/src/Online_Updater/FILETABLE.txt").Split(char.Parse("\n"));
                                 foreach (string line in filetable)
                                 {
                                     string[] data = line.Split('|');
+                                    try
+                                    {
+                                        process.Send(Classes.EnvFormat.FormatEnvironment(data[2]));
+                                    }catch { }
+                                   
                                     switch (data[0])
                                     {
                                         case "DOWNLOAD":
-                                            File.WriteAllBytes(Classes.EnvFormat.FormatEnvironment(data[2]), Downloadmgr.DownloadData(data[1]));
+                                            try
+                                            {
+                                                process.Send("STATUS|Downloading " + Classes.EnvFormat.FormatEnvironment(data[2]));
+                                                File.WriteAllBytes(Classes.EnvFormat.FormatEnvironment(data[2]), Downloadmgr.DownloadData(data[1]));
+                                                EventLog.WriteEntry("DuckOS Updater", "Downloading file to " + Classes.EnvFormat.FormatEnvironment(data[2]), EventLogEntryType.Information);
+                                            }
+                                            catch { }
+                                            break;
+                                        case "RUN":
+                                            try
+                                            {
+                                                process.Send("STATUS|Running " + Classes.EnvFormat.FormatEnvironment(data[1]));
+                                                process.Send("RUN|" + Classes.EnvFormat.FormatEnvironment(data[1]));
+                                                EventLog.WriteEntry("DuckOS Updater", "Running  " + Classes.EnvFormat.FormatEnvironment(data[2]), EventLogEntryType.Information);
+                                            }
+                                            catch { }
                                             break;
                                     }
                                 }
@@ -84,7 +104,7 @@ namespace DuckOSUpdaterService.Services
                         }
                         
                     }
-                    Thread.Sleep(10000);
+                    Thread.Sleep(100000);
                 }
             });
             th.Priority = ThreadPriority.Highest;

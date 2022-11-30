@@ -47,7 +47,7 @@ namespace DuckOSUpdater.Classes
                 byte[] buf = new byte[50];
                 Service.GetStream().Read(buf, 0, buf.Length);
                 Service.GetStream().Flush();
-                Console.WriteLine("Recieved data!");
+                Console.WriteLine("Recieved data! " + Encoding.UTF8.GetString(buf).Split('|')[0]);
                 return Encoding.UTF8.GetString(buf);
             }catch { }
             return "NULL|";
