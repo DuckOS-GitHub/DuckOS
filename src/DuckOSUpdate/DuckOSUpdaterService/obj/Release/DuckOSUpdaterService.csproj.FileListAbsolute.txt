@@ -1,0 +1,12 @@
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.Properties.Resources.resources
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.Services.updater.resources
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.csproj.GenerateResource.cache
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.csproj.CoreCompileInputs.cache
+F:\DuckOSUpdaterService\bin\Release\DuckOSUpdaterService.exe.config
+F:\DuckOSUpdaterService\bin\Release\DuckOSUpdaterService.exe
+F:\DuckOSUpdaterService\bin\Release\DuckOSUpdaterService.pdb
+F:\DuckOSUpdaterService\bin\Release\Siticone.UI.dll
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.csproj.CopyComplete
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.exe
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.pdb
+F:\DuckOSUpdaterService\obj\Release\DuckOSUpdaterService.csproj.AssemblyReference.cache
