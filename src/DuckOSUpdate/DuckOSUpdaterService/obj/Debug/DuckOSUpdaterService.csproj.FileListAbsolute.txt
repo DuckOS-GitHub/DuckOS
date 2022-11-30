@@ -1,0 +1,17 @@
+F:\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.AssemblyReference.cache
+F:\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.Forms.Update.resources
+F:\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.Properties.Resources.resources
+F:\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.Services.updater.resources
+F:\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.GenerateResource.cache
+F:\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.CoreCompileInputs.cache
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.AssemblyReference.cache
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.Properties.Resources.resources
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.Services.updater.resources
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.GenerateResource.cache
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.CoreCompileInputs.cache
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.exe
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.pdb
+F:\DuckOSUpdate\DuckOSUpdaterService\obj\Debug\DuckOSUpdaterService.csproj.CopyComplete
+F:\DuckOSUpdate\DuckOSUpdaterService.exe.config
+F:\DuckOSUpdate\DuckOSUpdaterService.exe
+F:\DuckOSUpdate\DuckOSUpdaterService.pdb

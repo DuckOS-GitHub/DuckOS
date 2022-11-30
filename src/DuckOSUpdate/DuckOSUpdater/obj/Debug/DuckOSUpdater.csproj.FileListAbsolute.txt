@@ -1,0 +1,11 @@
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.csproj.AssemblyReference.cache
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.Forms.Update.resources
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.Properties.Resources.resources
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.csproj.GenerateResource.cache
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.csproj.CoreCompileInputs.cache
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.csproj.CopyComplete
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.exe
+F:\DuckOSUpdate\DuckOSUpdater\obj\Debug\DuckOSUpdater.pdb
+F:\DuckOSUpdate\DuckOSUpdater.exe.config
+F:\DuckOSUpdate\DuckOSUpdater.exe
+F:\DuckOSUpdate\DuckOSUpdater.pdb

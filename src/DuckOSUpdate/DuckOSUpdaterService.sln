@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckOSUpdaterService", "DuckOSUpdaterService\DuckOSUpdaterService.csproj", "{3CA30838-8186-4689-A6F3-5F17374E9E19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckOSUpdater", "DuckOSUpdater\DuckOSUpdater.csproj", "{520EF5FA-D97E-4660-8332-079C0AD04F2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CA30838-8186-4689-A6F3-5F17374E9E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA30838-8186-4689-A6F3-5F17374E9E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA30838-8186-4689-A6F3-5F17374E9E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA30838-8186-4689-A6F3-5F17374E9E19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520EF5FA-D97E-4660-8332-079C0AD04F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520EF5FA-D97E-4660-8332-079C0AD04F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520EF5FA-D97E-4660-8332-079C0AD04F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520EF5FA-D97E-4660-8332-079C0AD04F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC6237D8-2AB2-45A3-A920-9DD3664858A0}
+	EndGlobalSection
+EndGlobal
