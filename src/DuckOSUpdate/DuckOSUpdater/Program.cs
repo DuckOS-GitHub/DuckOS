@@ -26,7 +26,7 @@ namespace DuckOSUpdater
             RegistryKey reg =  Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
             reg.SetValue("DuckOS Updater", Process.GetCurrentProcess().MainModule.FileName);
             var handle = GetConsoleWindow();
-            //ShowWindow(handle, SW_HIDE);
+            ShowWindow(handle, SW_HIDE);
             Application.Run(new Forms.Update());
         }
     }
