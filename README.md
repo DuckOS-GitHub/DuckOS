@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://github.com/DuckOS-GitHub/DuckOS/blob/main/banner_new.png?raw=true" alt="Logo" width="900" height="auto" />
 </p>
-**DuckOS**
 <p align="center">
 		<a href="https://discord.gg/8pDMf44t6R"><img alt="Discord server" src="https://img.shields.io/discord/998645880368410694.svg?label=discord" height="20"/></a>
 <a href="https://github.com/DuckOS-GitHub/DuckOS/blob/main/src/DuckOS_Modules/DuckOS-post_script.bat"><img alt="Post install script" src="https://img.shields.io/badge/post%20install%20script-download-green" height="20"/></a>
