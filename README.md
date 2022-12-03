@@ -15,5 +15,5 @@
   
 * **Simple**: DuckOS is **pre-tweaked**, While maintaining compatibility!
 * **Safe**: We are open source!
-* **Maintained**: We update our OS and fix bugs!
+* **Maintained**: We update our OS and fix bugs... almost everyday!
 * **Debloated**: Pre-installed applications and other unnecessery components are removed
