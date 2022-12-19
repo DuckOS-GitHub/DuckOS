@@ -36,15 +36,22 @@
 
 By downloading or installing any windows ISOs (or custom ISOs), you agree to [Microsoft's Terms](https://www.microsoft.com/en-us/Useterms/Retail/Windows/10/UseTerms_Retail_Windows_10_English.htm). None of DuckOS' isos are pre-activated. You must use a genuine license for the installation.
 
-# Why DuckOS
+## Why DuckOS
 * **Simple**: DuckOS is **pre-tweaked**, While maintaining compatibility!
 * **Safe**: We are open source!
-* **Maintained**: We update our OS and fix bugs... almost everyday!
+* **Maintained**: We update our OS and fix bugs... almost [everyday!](https://img.shields.io/github/commit-activity/w/DuckOS-GitHub/DuckOS)
 * **Debloated**: Pre-installed applications and other unnecessery components are removed
-
+* **Maximum Privacy**: Unlike standard Windows images, our's doesn't have any built in spyware!
+ 
 ## Cons
 
 But DuckOS isn't perfect, and here's some things you shoud considered before installing DuckOS on your computer:
 - Features disabled/broken/limited due to lots of components removed.
 - More likely to give you weird, but fixable errors.
 - You have to manually install drivers...
+
+Changelogs
+ 
+    - 0.50
+        - added changelogs
+        - fixed bugs
