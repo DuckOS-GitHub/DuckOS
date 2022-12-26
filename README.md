@@ -41,7 +41,7 @@ To install DuckOS, follow these steps:
 To use DuckOS, simply boot from the USB drive or DVD and follow the on-screen prompts to complete the installation. Once installed, you can use DuckOS just like any other version of Windows.
 
 ## Known Issues
-DuckOS is currently in a development stage, so there may be bugs or other issues present. If you encounter any issues while using DuckOS, please report them on the using [GitHub issues](https://github.com/DuckOS-GitHub/DuckOS/issues) or in our [Discord server](https://dsc.gg/duckos).
+DuckOS is currently in a development stage, so there may be bugs or other issues present. If you encounter any issues while using DuckOS, please report them using [GitHub issues](https://github.com/DuckOS-GitHub/DuckOS/issues) or in our [Discord server](https://dsc.gg/duckos).
 
 ## Contributing
 If you would like to contribute to the development of DuckOS, please see the contributing guidelines for more information.
