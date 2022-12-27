@@ -32,9 +32,9 @@
 To install DuckOS, follow these steps:
 
 1. Download the latest release of DuckOS from the releases page.
-2. Burn the ISO image to a USB drive or DVD using your preferred method.
+2. Burn the ISO image to a USB drive or DVD using your preferred method. We recommend using [Rufus](https://rufus.ie).
 3. Boot from the USB drive or DVD and follow the on-screen prompts to install DuckOS.
-4. Install drivers + your applications.
+4. Install drivers (with programs like SDIO, preincluded) + your applications.
 5. Enjoy!
 
 ### Usage
