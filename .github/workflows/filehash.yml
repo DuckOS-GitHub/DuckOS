@@ -1,4 +1,5 @@
-name: CheckHashes
+name: Check Util Hashes
+
 on:
   push:
     branches: [ "main" ]
@@ -12,20 +13,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Runs a set of commands using powershell
-      - name: Get hashes
+      # Generate hashes
+      - name: Generate hashes
         shell: cmd
         run: |
-          set CurrentDir=%CD%
+          for /f "delims=" %%a in ('cd') do set "CurrentDir=%%a"
           cd src\DuckOS_Modules
+          echo "# Util Hashes" > %currentdir%\utilhashes.md
           for %%i in (*.exe) do (
-              echo:## "%%i" >%currentdir%\utilhashes.md
-              echo:Hash of "%%i" in **SHA256**: >>%currentdir%\utilhashes.md
-              certutil -hashfile "%%i" SHA256 >>%currentdir%\utilhashes.md
-              echo:Size of "*%%i*": >>%currentdir%\utilhashes.md
-
-
-      - name: Commit changes
+              echo " " >>%currentdir%\utilhashes.md
+              echo "- **%%i**" >>%currentdir%\utilhashes.md
+              echo "  - Hash in **SHA256**: \`certutil -hashfile "%%i" SHA256\`" >>%currentdir%\utilhashes.md
+              echo "  - Size: \`%%~zi bytes\`" >>%currentdir%\utilhashes.md
+      
+      # Commit and push changes
+      - name: Commit and push changes
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions - check util hashes"

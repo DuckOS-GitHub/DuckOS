@@ -1,4 +1,5 @@
-name: Update
+name: Update Modules
+description: Downloads and updates post script modules and tools used by DuckOS.
 
 on:
     schedule:
@@ -9,28 +10,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Download libraries
-        run: | 
-            curl -L -f https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe > src/DuckOS_Modules/OOSU10.exe
-            curl -L -f https://sourceforge.net/projects/sevenzip/files/latest/download > src/DuckOS_Modules/Utils/7zip.exe
-            curl -L -f https://sourceforge.net/projects/open-shell.mirror/files/latest/download > src/DuckOS_Modules/Utils/OpenShell.exe
-            curl -L -f https://www.nirsoft.net/utils/devmanview-x64.zip > src/DuckOS_Modules/devmanview.zip
-            curl -L -f https://www.sordum.org/files/downloads.php?power-run > src/DuckOS_Modules/powerrun.zip
+      
+      # Download libraries
+      - name: Download OOSU10
+        run: curl -L -f https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe > src/DuckOS_Modules/OOSU10.exe || exit 1
+      
+      - name: Download 7zip
+        run: curl -L -f https://sourceforge.net/projects/sevenzip/files/latest/download > src/DuckOS_Modules/Utils/7zip.exe || exit 1
+      
+      - name: Download OpenShell
+        run: curl -L -f https://sourceforge.net/projects/open-shell.mirror/files/latest/download > src/DuckOS_Modules/Utils/OpenShell.exe || exit 1
+      
+      - name: Download DevManView
+        run: |
+            curl -L -f https://www.nirsoft.net/utils/devmanview-x64.zip > src/DuckOS_Modules/devmanview.zip || exit 1
             cd src/DuckOS_Modules/
-            sudo unzip -o devmanview.zip
-            sudo rm -f DevManView.chm
-            sudo rm -f readme.txt 
-            sudo rm -f devmanview.zip
-            sudo rm -f PowerRun
+            sudo unzip -o devmanview.zip || exit 1
+            sudo rm -f DevManView.chm || exit 1
+            sudo rm -f readme.txt || exit 1
+            sudo rm -f devmanview.zip || exit 1
+      
+      - name: Download PowerRun
+        run: |
+            curl -L -f https://www.sordum.org/files/downloads.php?power-run > src/DuckOS_Modules/powerrun.zip || exit 1
+            cd src/DuckOS_Modules/
+            sudo unzip -o powerrun.zip || exit 1
+            sudo rm -f PowerRun || exit 1
             cd ..
+      
+      - name: Download Process Explorer
+        run: |
             cd "Desktop/DuckOS - Post Install Folder/Tools/ProcessExplorer"
-            curl -L -f https://live.sysinternals.com/procexp.exe > "Process Explorer.exe"
-            curl -L -f https://live.sysinternals.com/autoruns.exe > "!Autoruns.exe"
-
-      # Runs a set of commands using the runners shell
-      - name: Commit changes
+            curl -L -f https://live.sysinternals.com/procexp.exe > "Process Explorer.exe" || exit 1
+      
+      - name: Download Autoruns
+        run: |
+            cd "Desktop/DuckOS - Post Install Folder/Tools/ProcessExplorer"
+            curl -L -f https://live.sysinternals.com/autoruns.exe > "!Autoruns.exe" || exit 1
+      
+      # Commit and push changes
+      - name: Commit and push changes
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions - update modules"
