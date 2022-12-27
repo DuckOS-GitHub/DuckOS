@@ -47,4 +47,4 @@ DuckOS is currently in a development stage, so there may be bugs or other issues
 If you would like to contribute to the development of DuckOS, please see the contributing guidelines for more information.
 
 ## License
-DuckOS is [licensed](https://github.com/DuckOS-GitHub/DuckOS/blob/unreal-readme/LICENSE) under the GPL v2 License.
+DuckOS is [licensed](https://github.com/DuckOS-GitHub/DuckOS/blob/unreal-readme/LICENSE) under the GPL v3 License.
